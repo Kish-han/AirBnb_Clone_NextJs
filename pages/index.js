@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import LargeCard from '../components/LargeCard'
 import MediumCards from '../components/MediumCards'
@@ -56,6 +57,9 @@ export default function Home({ expoloreData, cardsData }) {
           buttonText="Get Inspired"
         />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }
