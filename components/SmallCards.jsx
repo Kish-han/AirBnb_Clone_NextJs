@@ -7,6 +7,7 @@ const SmallCards = ({ img, location, distance }) => {
             <section className="relative h-16 w-16">
                 <Image
                     src={img}
+                    alt=""
                     layout='fill'
                     className='rounded-lg'
                 />
