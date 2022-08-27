@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/Banner'
 import Header from '../components/Header'
+import LargeCard from '../components/LargeCard'
 import MediumCards from '../components/MediumCards'
 import SmallCards from '../components/SmallCards'
 import styles from '../styles/Home.module.css'
@@ -35,7 +36,7 @@ export default function Home({ expoloreData, cardsData }) {
             ))}
           </div>
         </section>
-        <section className=''>
+        <section className='pt-6'>
           <h2 className='text-4xl font-semibold pb-5'> Live Anywhere </h2>
           <div className='flex overflow-x-scroll scrollbar-hide overflow-y-hidden p-8 space-x-4'>
             {/* Fetch data using Api made using JsonKeeper and destructure it */}
@@ -48,6 +49,12 @@ export default function Home({ expoloreData, cardsData }) {
             ))}
           </div>
         </section>
+        <LargeCard
+          img={"https://bit.ly/3KtgfBt"}
+          title="The Greatest Outdoors"
+          description={"Wishlists curated by Airbnb"}
+          buttonText="Get Inspired"
+        />
       </main>
     </div>
   )
