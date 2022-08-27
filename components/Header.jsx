@@ -16,7 +16,7 @@ const Header = () => {
             <div className=" relative flex items-center h-10 my-auto  ">
                 <Image
                     className='cursor-pointer'
-                    src={"https://links.papareact.com/qd3"}
+                    src={"https://bit.ly/3PXHbdI"}
                     layout="fill"
                     objectFit='contain'
                     objectPosition="left"
