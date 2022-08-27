@@ -17,6 +17,7 @@ const Header = () => {
                 <Image
                     className='cursor-pointer'
                     src={"https://bit.ly/3PXHbdI"}
+                    alt=""
                     layout="fill"
                     objectFit='contain'
                     objectPosition="left"
