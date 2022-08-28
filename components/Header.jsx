@@ -3,6 +3,7 @@ import Image from 'next/image'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import { useRouter } from "next/dist/client/router"
 import {
     SearchIcon,
     GlobeAltIcon,
@@ -12,7 +13,7 @@ import {
 } from "@heroicons/react/solid"
 
 
-const Header = () => {
+const Header = ({placeholder}) => {
     const [searchInput, setSearchInput] = useState("")
 
     const [startDate, setStartDate] = useState(new Date())
@@ -20,6 +21,20 @@ const Header = () => {
     const [endDate, setEndDate] = useState(new Date())
 
     const [noOfGuests, setNoOfGuests] = useState(2)
+
+    const router = useRouter()
+
+    const search = () => {
+        router.push({
+            pathname: "/search",
+            query: {
+                location:searchInput,
+                startDate:startDate.toISOString(),
+                endDate:endDate.toISOString(),
+                noOfGuests
+            }
+        })
+    }
 
     const selectionRange = {
         startDate: startDate,
@@ -34,7 +49,9 @@ const Header = () => {
     return (
         <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-4 px-5 md:px-10' >
             {/* left */}
-            <div className=" relative flex items-center h-10 my-auto  ">
+            <div
+                onClick={() => router.push('/')}
+                className=" relative flex items-center h-10 mr-4 md:mr-0 my-auto  ">
                 <Image
                     className='cursor-pointer'
                     src={"https://bit.ly/3PXHbdI"}
@@ -49,13 +66,13 @@ const Header = () => {
                 <input
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
-                    className='pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400' type="text" placeholder='Start your Search' />
+                    className='pl-5 bg-transparent outline-none w-full flex-grow text-sm text-gray-600 placeholder-gray-400' type="text" placeholder={placeholder || 'Start your Search' } />
                 <SearchIcon className='h-8 text-white bg-red-400 rounded-full p-2 mr-2 cursor-pointer hidden md:inline-flex' />
             </div>
             {/* right */}
             <div className="flex space-x-4 items-center justify-end text-gray-500">
                 <p className="hidden md:inline-block cursor-pointer">Become a host</p>
-                <GlobeAltIcon className='h-6 cursor-pointer' />
+                <GlobeAltIcon className='h-6 cursor-pointer hidden md:inline-flex' />
                 <div className="flex border-2 rounded-full p-2 space-x-2">
                     <MenuIcon className='h-6 cursor-pointer' />
                     <UserCircleIcon className='h-6 cursor-pointer' />
@@ -80,8 +97,8 @@ const Header = () => {
                             className="w-12 pl-2 text-lg outline-none text-red-400" />
                     </div>
                     <div className='grid grid-cols-2'>
-                        <button onClick={()=>setSearchInput("")} className='text-gray-500 '>Cancel</button>
-                        <button className='text-red-400'>Search</button>
+                        <button onClick={() => setSearchInput("")} className='text-gray-500 px-2 py-4 rounded-lg transition-colors duration-100  hover:bg-gray-200'>Cancel</button>
+                        <button onClick={search} className='text-red-400 px-2 py-4 rounded-lg transition-colors duration-100  hover:bg-red-400 hover:text-white'>Search</button>
                     </div>
                 </div>
             )}
@@ -91,3 +108,4 @@ const Header = () => {
 }
 
 export default Header
+
